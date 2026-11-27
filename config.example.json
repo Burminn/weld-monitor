@@ -1,0 +1,57 @@
+{
+  "mode": "sim",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "poll_interval_s": 1.0,
+  "timezone": "Europe/Warsaw",
+  "shifts": [
+    {
+      "name": "I",
+      "start": "06:00"
+    },
+    {
+      "name": "II",
+      "start": "14:00"
+    },
+    {
+      "name": "III",
+      "start": "22:00"
+    }
+  ],
+  "cycle_max_s": 600,
+  "sim": {
+    "speed": 4,
+    "seed_history_days": 3,
+    "controls": true
+  },
+  "opcua": {
+    "security_policy": "Basic256Sha256",
+    "security_mode": "SignAndEncrypt",
+    "client_cert": "certs/client.der",
+    "client_key": "certs/client_key.pem"
+  },
+  "robots": [
+    {
+      "id": "R1",
+      "name": "Stanowisko 1",
+      "controller": "G4",
+      "robot_no": 1,
+      "ip": "192.0.2.11",
+      "port": 4840,
+      "username": "operator",
+      "server_cert": "certs/R1_server.der",
+      "password_env": "ROBOT_R1_PASSWORD"
+    },
+    {
+      "id": "R2",
+      "name": "Stanowisko 2",
+      "controller": "G4",
+      "robot_no": 2,
+      "ip": "192.0.2.12",
+      "port": 4840,
+      "username": "operator",
+      "server_cert": "certs/R2_server.der",
+      "password_env": "ROBOT_R2_PASSWORD"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Flask~=3.1
+waitress~=3.0
+tzdata>=2024.1
+# Tylko przy podłączaniu prawdziwych robotów (tryb opcua) — warstwa nieprzetestowana na sprzęcie:
+# asyncua~=1.1
+# cryptography>=43   # tools/check_robot.py --make-cert

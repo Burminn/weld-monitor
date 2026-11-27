@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor stanowisk spawalniczych</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="arc" aria-hidden="true"></span><h1>Stanowiska spawalnicze</h1></div>
+  <nav id="tabs" aria-label="Widoki">
+    <a href="#przeglad" data-view="przeglad">Przegląd</a>
+    <a href="#produkcja" data-view="produkcja">Produkcja</a>
+    <a href="#zdarzenia" data-view="zdarzenia">Zdarzenia</a>
+    <a href="#polaczenie" data-view="polaczenie">Połączenie</a>
+  </nav>
+  <div class="meta">
+    <span id="shiftInfo" class="muted"></span>
+    <span id="clock" class="clock"></span>
+    <span id="link" class="link ok" title="Połączenie przeglądarki z serwerem">●</span>
+  </div>
+</header>
+
+<main>
+  <section id="v-przeglad" class="view">
+    <div id="cards" class="cards"></div>
+    <h2>Ostatnie zdarzenia</h2>
+    <div id="recentEvents" class="panel scroll"></div>
+  </section>
+
+  <section id="v-produkcja" class="view" hidden>
+    <form id="repForm" class="toolbar">
+      <label>Od <input type="date" id="rFrom"></label>
+      <label>Do <input type="date" id="rTo"></label>
+      <label>Podział
+        <select id="rGroup"><option value="shift">na zmiany</option><option value="day">na doby</option></select>
+      </label>
+      <button type="submit">Pokaż</button>
+      <a id="csvLink" class="btn" href="#">Pobierz CSV (Excel)</a>
+    </form>
+    <div id="repSummary" class="tiles"></div>
+    <div class="panel"><div id="repChart"></div></div>
+    <div class="panel scroll"><table id="repTable"></table></div>
+    <p class="muted small">Doba produkcyjna zaczyna się o starcie pierwszej zmiany. Sztuki liczone z przyrostu licznika robota; średni cykl pomija przerwy dłuższe niż 10 min. Wykorzystanie = czas pracy / cały czas okresu.</p>
+  </section>
+
+  <section id="v-zdarzenia" class="view" hidden>
+    <form id="evForm" class="toolbar">
+      <label>Stanowisko <select id="evRobot"><option value="">wszystkie</option></select></label>
+      <label>Od <input type="date" id="evFrom"></label>
+      <label>Do <input type="date" id="evTo"></label>
+      <label>Poziom
+        <select id="evLevel"><option value="">wszystkie</option><option value="err">Błąd</option><option value="warn">Uwaga</option><option value="info">Info</option></select>
+      </label>
+      <label>Rodzaj <select id="evKind"><option value="">wszystkie</option></select></label>
+      <label>Szukaj w treści <input type="search" id="evQ" maxlength="100" placeholder="np. alarm"></label>
+      <button type="submit">Filtruj</button>
+      <button type="button" id="evReset">Wyczyść</button>
+    </form>
+    <div class="panel scroll"><table id="evTable"></table></div>
+    <div class="pager">
+      <span id="evCount" class="muted"></span>
+      <span class="grow"></span>
+      <button type="button" id="evPrev">‹ Nowsze</button>
+      <button type="button" id="evNext">Starsze ›</button>
+    </div>
+    <div class="exports">
+      <span class="muted">Eksport CSV (Excel), zgodnie z wybranymi filtrami:</span>
+      <a class="btn" id="exEvents" href="#">Zdarzenia</a>
+      <a class="btn" id="exStates" href="#">Zmiany stanów</a>
+      <a class="btn" id="exPieces" href="#">Sztuki</a>
+    </div>
+    <p class="muted small" id="evSpan"></p>
+  </section>
+
+  <section id="v-polaczenie" class="view" hidden>
+    <div id="connIntro" class="panel note"></div>
+    <div id="connRobots"></div>
+    <h2>Mapowanie zmiennych OPC UA</h2>
+    <div class="panel scroll"><table id="nodesTable"></table></div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

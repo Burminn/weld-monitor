@@ -1,0 +1,15 @@
+{
+  "_info": "Mapowanie metryk logicznych na węzły OPC UA robota. Instrukcja G4 NIE podaje listy węzłów, więc node_id są puste. Uzupełnij je po przejrzeniu serwera (tools/browse_nodes.py albo UaExpert). Pusta metryka = panel jej nie pokazuje.",
+  "metrics": {
+    "state": {
+      "node_id": null,
+      "opis": "Stan robota/cyklu. Wartość surowa mapowana przez state_map na: work | idle | alarm",
+      "state_map": {}
+    },
+    "program": {"node_id": null, "opis": "Nazwa lub numer aktualnego programu spawania"},
+    "piece_counter": {"node_id": null, "opis": "Licznik sztuk/cykli (rosnący). Z jego przyrostu liczona jest produkcja"},
+    "alarm_text": {"node_id": null, "opis": "Treść aktywnego alarmu"},
+    "weld_current": {"node_id": null, "opis": "Prąd spawania [A], podgląd na żywo"},
+    "weld_voltage": {"node_id": null, "opis": "Napięcie spawania [V], podgląd na żywo"}
+  }
+}

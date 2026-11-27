@@ -1,5 +1,6 @@
 pytest~=9.1
 bandit~=1.9
 pip-audit~=2.9
+pytest~=9.2
 bandit~=1.8
 pip-audit~=2.10

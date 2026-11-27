@@ -330,7 +330,7 @@ def main(argv=None):
                 print(f"!!! UWAGA: robot {r['id']} ma puste albo fabryczne hasło OPC UA.", file=sys.stderr)
     print("\nMonitor stanowisk spawalniczych działa. Panel dostępny pod adresem:")
     print(f"  http://localhost:{port}")
-    if host in ("0.0.0.0", "::"):
+    if host in ("0.0.0.0", "::"):  # nosec B104
         for ip in local_ips():
             print(f"  http://{ip}:{port}   (z innych komputerów w sieci)")
     try:

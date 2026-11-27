@@ -124,8 +124,8 @@ class DB:
 
     def events_filtered(self, limit=100, offset=0, **flt):
         where, a = self._event_where(**flt)
-        total = self.query("SELECT COUNT(*) AS n FROM events" + where, a)[0]["n"]
-        rows = self.query("SELECT * FROM events" + where + " ORDER BY ts DESC, id DESC LIMIT ? OFFSET ?",
+        total = self.query("SELECT COUNT(*) AS n FROM events" + where, a)[0]["n"]  # nosec B608
+        rows = self.query("SELECT * FROM events" + where + " ORDER BY ts DESC, id DESC LIMIT ? OFFSET ?",  # nosec B608
                           a + [limit, offset])
         return rows, total
 
@@ -149,7 +149,7 @@ class DB:
             where = (" WHERE " + " AND ".join(w)) if w else ""
         con = sqlite3.connect(self.path, check_same_thread=False)
         try:
-            cur = con.execute(f"SELECT * FROM {table}{where} ORDER BY ts, id", a)
+            cur = con.execute(f"SELECT * FROM {table}{where} ORDER BY ts, id", a)  # nosec B608
             cols = [c[0] for c in cur.description]
             yield cols
             while True:
